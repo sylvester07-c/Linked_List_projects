@@ -15,4 +15,12 @@ public class Place {
     public int getDistance() {
         return distance;
     }
+
+    @Override
+    public String toString() {
+        return "Place{" +
+                "place='" + place + '\'' +
+                ", distance=" + distance +
+                '}';
+    }
 }
