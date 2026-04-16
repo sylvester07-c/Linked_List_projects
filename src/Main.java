@@ -49,6 +49,33 @@ public class Main {
         System.out.println(list);
     }
 
+    private static void addPlace(LinkedList<Place> list, Place place) {
+
+        if(list.contains(place)){
+            System.out.println("Found duplicate: " + place);
+            return;
+        }
+
+        for(Place p : list){
+            if(p.getPlace().equalsIgnoreCase(place.getPlace())){
+                System.out.println("Found duplicate: " + place);
+                return;
+            }
+        }
+
+        int matchedIndex = 0;
+        for(var listPlace: list){
+            if(place.getDistance() < listPlace.getDistance()){
+                list.add(matchedIndex, place);
+                return;
+            }
+
+            matchedIndex++;
+        }
+
+        list.add(place);
+    }
+
     private static void printOptions(){
         System.out.println("""
                 
@@ -103,12 +130,13 @@ public class Main {
        Place place5 = new Place("Melbourne", 877);
        Place place6 = new Place("Perth", 3923);
 
-       places.add(place1);
-       places.add(place2);
-       places.add(place3);
-       places.add(place4);
-       places.add(place5);
-       places.add(place6);
+       addPlace(places, place1);
+       addPlace(places, place2);
+       addPlace(places, place3);
+       addPlace(places, place4);
+       addPlace(places, place5);
+       addPlace(places, place6);
+       addPlace(places, place6);
 
        Scanner scanner = new Scanner(System.in);
        boolean flag = true;
@@ -123,7 +151,7 @@ public class Main {
                    switch (answer.toUpperCase()) {
                        case  "F" -> forward(places);
                        case  "B" -> backward(places);
-                       case  "P" -> listOfPlaces(places);
+                       case  "L" -> listOfPlaces(places);
                        default -> System.out.println("Wrong entry,enter any of the options above!");
                    }
                }

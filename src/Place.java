@@ -18,9 +18,6 @@ public class Place {
 
     @Override
     public String toString() {
-        return "Place{" +
-                "place='" + place + '\'' +
-                ", distance=" + distance +
-                '}';
+        return  String.format("%s (%d)", place, distance);
     }
 }
